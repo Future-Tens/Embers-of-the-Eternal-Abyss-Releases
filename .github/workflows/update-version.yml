@@ -1,9 +1,7 @@
 # 發布 Release 時，自動把 Firestore 的 config/version.latest_version 更新成這個版本
 #
-# 這個檔案要放在公開的 Release repo (Future-Tens/Embers-of-the-Eternal-Abyss-Releases)
-# 的 .github/workflows/update-version.yml 才會生效；原始碼 repo 這裡只是保存一份
-#
 # 需要的 Secret：FIREBASE_SERVICE_ACCOUNT = 服務帳戶金鑰 (JSON 全文)，帳戶要有「Cloud Datastore 使用者」角色
+# access token 由 gcloud 直接用金鑰向 OAuth 取得，不經過 IAM Credentials API，所以不需要額外啟用 API 或加「服務帳戶憑證建立者」角色
 # Release 的 tag 要和 project.godot 的 config/version 一致 (例如 v0.4.0 對應 0.4.0，開頭的 v 會被去掉)
 # 預先發行 (pre-release) 不會更新版本號；也可以在 Actions 頁面手動執行並輸入版本號
 
@@ -39,18 +37,20 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: 登入 Google Cloud
-        id: auth
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          token_format: access_token
+
+      - name: 安裝 gcloud
+        uses: google-github-actions/setup-gcloud@v2
 
       # 只更新 latest_version (updateMask)，download_url、force_update 等其他欄位保持不變
       - name: 更新 Firestore config/version
         env:
-          TOKEN: ${{ steps.auth.outputs.access_token }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
+          TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::$TOKEN"
           curl --fail-with-body -sS -X PATCH \
             -H "Authorization: Bearer $TOKEN" \
             -H "Content-Type: application/json" \
