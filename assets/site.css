@@ -1,0 +1,103 @@
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #0b0812;
+    color: #e5e1ec;
+}
+.font-serif { font-family: 'Noto Serif TC', serif; }
+.font-cinzel { font-family: 'Cinzel', serif; }
+
+.ember-glow { text-shadow: 0 0 18px rgba(111, 227, 165, 0.45); }
+
+/* 圖示呼吸燈 */
+@keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(111, 227, 165, 0.25)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 30px rgba(111, 227, 165, 0.55)); transform: scale(1.04); }
+}
+.animate-icon { animation: pulse-glow 4s ease-in-out infinite; }
+
+.scrollbar-hide { scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* 主要按鈕 (同遊戲的 AccentButton) */
+.btn-accent {
+    background: #1f5c43;
+    border: 1px solid #6fe3a5;
+    color: #fff;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-accent:hover { background: #26704f; box-shadow: 0 0 20px rgba(111, 227, 165, 0.3); }
+
+/* 遊戲截圖：手機外框 */
+.phone {
+    flex: 0 0 68%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+@media (min-width: 768px) { .phone { flex: none; max-width: none; } }
+.phone img {
+    width: 100%;
+    border-radius: 1.5rem;
+    border: 3px solid #2c2140;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(111, 227, 165, 0.1);
+}
+.phone figcaption {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #a1a1aa;
+}
+
+/* 卡片 */
+.feature-card, .job-card, .rule-card, .download-card {
+    background: rgba(27, 20, 41, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 1.25rem;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.feature-card, .job-card, .download-card { padding: 1.5rem; }
+.rule-card { padding: 1.75rem; }
+.feature-card:hover, .job-card:hover, .download-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(111, 227, 165, 0.45);
+    box-shadow: 0 10px 24px rgba(111, 227, 165, 0.08);
+}
+.feature-card h3 { color: #fff; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
+.feature-card p, .rule-text { color: #a1a1aa; font-size: 0.9rem; line-height: 1.7; }
+.feature-icon { font-size: 2.2rem; height: 64px; display: flex; align-items: center; margin-bottom: 0.5rem; }
+.feature-art { width: 64px; height: 64px; object-fit: contain; margin-bottom: 0.5rem; }
+
+.job-card { display: flex; flex-direction: column; height: 100%; }
+.job-card-special { border-color: rgba(232, 196, 106, 0.35); background: rgba(48, 38, 20, 0.35); }
+.job-emoji { font-size: 2.5rem; text-align: center; margin-bottom: 0.75rem; }
+.job-card h3 { color: #e8c46a; font-weight: 700; font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; }
+.job-desc { color: #a1a1aa; font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
+.job-section { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.9rem; margin-top: 0.9rem; }
+.job-section p { color: #d4d4d8; font-size: 0.85rem; line-height: 1.6; }
+.job-label { display: block; color: #6fe3a5; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.job-label em { color: #8fb8ff; font-style: normal; margin-left: 0.3rem; }
+
+.tag {
+    padding: 0.1rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 0.3rem;
+    border: 1px solid;
+}
+.tag-physical { color: #f8a5ab; background: rgba(224, 90, 100, 0.15); border-color: rgba(224, 90, 100, 0.3); }
+.tag-magic { color: #a5c4f8; background: rgba(90, 130, 224, 0.15); border-color: rgba(90, 130, 224, 0.3); }
+.tag-mixed { color: #e8c46a; background: rgba(232, 196, 106, 0.12); border-color: rgba(232, 196, 106, 0.3); }
+
+/* 更新日誌：Release 說明 (Markdown) */
+.release-body { color: #d4d4d8; line-height: 1.8; font-size: 0.95rem; }
+.release-body h2 { color: #fff; font-size: 1.3rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+.release-body h3 { color: #e8c46a; font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.release-body h2:first-child, .release-body h3:first-child { margin-top: 0; }
+.release-body p { margin: 0.6rem 0; }
+.release-body ul { list-style: disc; padding-left: 1.4rem; margin: 0.4rem 0; }
+.release-body ul ul { list-style: circle; }
+.release-body li { margin: 0.25rem 0; }
+.release-body strong { color: #fff; }
+.release-body code { background: rgba(255, 255, 255, 0.08); padding: 0.1rem 0.35rem; border-radius: 0.3rem; font-size: 0.85em; }
+.release-body a { color: #6fe3a5; text-decoration: underline; }
+.release-body hr { border-color: rgba(255, 255, 255, 0.1); margin: 1.5rem 0; }

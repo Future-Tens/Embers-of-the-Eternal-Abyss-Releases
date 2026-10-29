@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>永恆深淵的餘燼 | Embers of the Eternal Abyss</title>
+    <meta name="description" content="手機直式 Roguelike 爬塔遊戲。選擇路線、運用職業技能、點亮本能樹，在賽季英雄榜刻下你的名字。">
+    <meta property="og:title" content="永恆深淵的餘燼 | Embers of the Eternal Abyss">
+    <meta property="og:description" content="手機直式 Roguelike 爬塔遊戲。越深入，越致命。">
+    <meta property="og:image" content="assets/icon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="antialiased scroll-smooth">
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 bg-abyss-950/80 backdrop-blur-md border-b border-white/10 transition-colors">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="assets/icon.png" class="w-9 h-9 rounded-lg" alt="永恆深淵的餘燼 圖示">
+                <span class="text-lg md:text-xl font-serif font-bold tracking-wider text-white">永恆深淵的餘燼</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#features" class="hover:text-ember transition">遊戲特色</a>
+                <a href="#jobs" class="hover:text-ember transition">職業</a>
+                <a href="#rules" class="hover:text-ember transition">深淵法則</a>
+                <a href="updates.html" class="hover:text-ember transition">更新日誌</a>
+                <a href="#download" class="btn-accent px-5 py-2 rounded-full text-sm font-bold">下載遊戲</a>
+            </div>
+            <a href="#download" class="md:hidden btn-accent px-4 py-1.5 rounded-full text-sm font-bold">下載</a>
+        </div>
+    </nav>
+
+    <!-- 首頁 -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
+        <div class="absolute inset-0 bg-[url('assets/hero.webp')] bg-cover bg-center opacity-40"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-abyss-950 via-abyss-950/40 to-abyss-950/70"></div>
+
+        <div class="relative z-10 text-center px-6">
+            <div class="mb-8 flex justify-center">
+                <img src="assets/icon.png" class="w-28 h-28 md:w-36 md:h-36 rounded-3xl animate-icon" alt="">
+            </div>
+            <p class="text-ember font-bold tracking-[0.3em] mb-4 text-xs md:text-sm">ROGUELIKE 爬塔 ・ ANDROID / WINDOWS</p>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-3 ember-glow">永恆深淵的餘燼</h1>
+            <p class="font-cinzel text-gold text-lg md:text-2xl tracking-widest mb-8">Embers of the Eternal Abyss</p>
+            <p class="max-w-xl mx-auto text-base md:text-lg text-zinc-400 mb-10 leading-relaxed italic">
+                「深淵不歡迎懦夫，只有具備智慧與勇氣的人，<br class="hidden md:block">才能將名字刻在英雄榜上。」
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#download" class="w-full sm:w-auto px-10 py-4 btn-accent font-bold rounded-xl text-lg">立即下載</a>
+                <a href="updates.html" class="w-full sm:w-auto px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/15 font-bold rounded-xl text-lg transition">更新日誌</a>
+            </div>
+            <p class="mt-6 text-sm text-zinc-500" data-latest-label>正在查詢最新版本...</p>
+        </div>
+    </section>
+
+    <!-- 遊戲畫面 -->
+    <section class="py-20 px-5 bg-abyss-900 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">越深入，越致命</h2>
+                <p class="text-zinc-400">為手機直式操作設計，單手就能一路爬進深淵</p>
+            </div>
+            <div class="flex md:grid md:grid-cols-4 gap-5 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+                <figure class="phone snap-center">
+                    <img src="assets/shots/routes.webp" alt="選擇路線的畫面" loading="lazy">
+                    <figcaption>命運的岔路：兩條路線，選前就已注定</figcaption>
+                </figure>
+                <figure class="phone snap-center">
+                    <img src="assets/shots/combat.webp" alt="戰鬥畫面" loading="lazy">
+                    <figcaption>戰鬥：攻擊，或發動職業技能</figcaption>
+                </figure>
+                <figure class="phone snap-center">
+                    <img src="assets/shots/shop.webp" alt="商店畫面" loading="lazy">
+                    <figcaption>每 5 層的休息點與深淵商人</figcaption>
+                </figure>
+                <figure class="phone snap-center">
+                    <img src="assets/shots/instinct.webp" alt="本能樹畫面" loading="lazy">
+                    <figcaption>本能樹：跨越每一次冒險的成長</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- 遊戲特色 -->
+    <section id="features" class="py-24 px-5 bg-abyss-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">遊戲特色</h2>
+                <p class="text-zinc-400 italic">死亡不是終點，而是下一位冒險者起點的餘燼</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="feature-card">
+                    <div class="feature-icon">💀</div>
+                    <h3>永久死亡</h3>
+                    <p>倒下就是結束，存檔隨之消失。存檔也會即時保存，關掉重開也無法重骰命運。</p>
+                </div>
+                <div class="feature-card">
+                    <img src="assets/art/status.webp" class="feature-art" alt="">
+                    <h3>職業技能與 MP</h3>
+                    <p>五種職業各有專屬技能。MP 跨戰鬥保留，現在用掉，還是留給魔王？</p>
+                </div>
+                <div class="feature-card">
+                    <img src="assets/art/tree.webp" class="feature-art" alt="">
+                    <h3>本能樹</h3>
+                    <p>以成就換取本能點，七大分支加上職業專屬節點，點數永遠不夠用，流派由你決定。</p>
+                </div>
+                <div class="feature-card">
+                    <img src="assets/art/backpack.webp" class="feature-art" alt="">
+                    <h3>首位制背包</h3>
+                    <p>只能使用第一格的物品。新撿到的神裝，得等前面的藥水用完才穿得上。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>賽季英雄榜</h3>
+                    <p>每季有特定屬性的怪物更常出現，搭配本能的屬性特化，爭奪當季排名。</p>
+                </div>
+                <div class="feature-card">
+                    <img src="assets/art/log.webp" class="feature-art" alt="">
+                    <h3>成就與任務</h3>
+                    <p>20 個成就（含隱藏成就）與每日、每週任務，每一局都有新的目標。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🕯️</div>
+                    <h3>遺產系統</h3>
+                    <p>倒下的英雄會留下一件遺物，其他冒險者能在遺跡中撿到。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>D20 事件檢定</h3>
+                    <p>巨石門戶、靈魂天秤……屬性越高越容易成功，失敗的代價隨深度增加。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 職業 -->
+    <section id="jobs" class="py-24 px-5 bg-abyss-900 border-y border-white/5">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">選擇你的宿命</h2>
+                <p class="text-zinc-400 italic">五種截然不同的靈魂，五種踏入深淵的方式</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 items-stretch">
+                <div class="job-card">
+                    <div class="job-emoji">🛡️</div>
+                    <h3>破壁者</h3>
+                    <div class="text-center mb-4"><span class="tag tag-physical">物理職業</span></div>
+                    <p class="job-desc">鋼鐵般的肉體擁有更高的力量 (STR)，天生帶有額外的暴擊率與暴擊傷害。</p>
+                    <div class="job-section">
+                        <span class="job-label">被動・碎骨</span>
+                        <p>暴擊率 15%，暴擊時造成更高倍率的重擊。</p>
+                    </div>
+                    <div class="job-section">
+                        <span class="job-label">技能・碎顱一擊 <em>30 MP</em></span>
+                        <p>必定暴擊，暴擊倍率額外 +0.6。被反擊與擊殺時回復 MP。</p>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-emoji">👣</div>
+                    <h3>幻影行者</h3>
+                    <div class="text-center mb-4"><span class="tag tag-physical">物理職業</span></div>
+                    <p class="job-desc">靈巧的避難者，擁有高敏捷 (DEX)。生命脆弱，卻能在混沌中洞察前方的危險。</p>
+                    <div class="job-section">
+                        <span class="job-label">被動・預知未來</span>
+                        <p>能直接看穿路線上的怪物與掉落物。</p>
+                    </div>
+                    <div class="job-section">
+                        <span class="job-label">技能・殘影 <em>25 MP</em></span>
+                        <p>這次攻擊後不會被反擊，壓力也不會增加。每前進一層與擊殺時回復 MP。</p>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-emoji">🩸</div>
+                    <h3>血色祭司</h3>
+                    <div class="text-center mb-4"><span class="tag tag-magic">魔法職業</span></div>
+                    <p class="job-desc">禁忌血咒的使用者，擁有高智力 (INT)，以鮮血祭儀換取撼動深淵的破壞力。</p>
+                    <div class="job-section">
+                        <span class="job-label">被動・禁忌轉化</span>
+                        <p>每次攻擊燃燒生命，換取基於 INT 的額外傷害；回復道具效果較差。</p>
+                    </div>
+                    <div class="job-section">
+                        <span class="job-label">技能・血之盛宴 <em>20 MP</em></span>
+                        <p>吸取造成的傷害回復 HP。只有擊殺時回復 MP。</p>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-emoji">📕</div>
+                    <h3>求道者</h3>
+                    <div class="text-center mb-4"><span class="tag tag-magic">魔法職業</span></div>
+                    <p class="job-desc">追求真理的學者，擁有極高的感知 (PER)、最多的初始點數與升級成長。</p>
+                    <div class="job-section">
+                        <span class="job-label">被動・一心求道</span>
+                        <p>初始配點與每級成長點數都比其他職業多。</p>
+                    </div>
+                    <div class="job-section">
+                        <span class="job-label">技能・洞見 <em>30 MP</em></span>
+                        <p>看穿弱點，無視防禦，傷害 ×1.5。前進與事件檢定成功時回復 MP。</p>
+                    </div>
+                </div>
+                <div class="job-card job-card-special">
+                    <div class="job-emoji">🦫</div>
+                    <h3>波貝 <span class="text-xs text-gold ml-1">需解鎖</span></h3>
+                    <div class="text-center mb-4"><span class="tag tag-mixed">混傷職業</span></div>
+                    <p class="job-desc">神祕的生物，天生極高的幸運 (LUK)。這隻波貝將會改變生態。</p>
+                    <div class="job-section">
+                        <span class="job-label">被動・???</span>
+                        <p>回復道具效果 ×1.2，初始點數極多。</p>
+                    </div>
+                    <div class="job-section">
+                        <span class="job-label">技能・超級波貝!!! <em>15 MP</em></span>
+                        <p>會發生什麼事……誰知道呢？幸運越高，好結果越多。</p>
+                    </div>
+                    <p class="text-xs text-gold/80 mt-4 text-center">其他四個職業各自到達第 20 層後解鎖</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 深淵法則 -->
+    <section id="rules" class="py-24 px-5 bg-abyss-950">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-center text-white mb-14">深淵法則</h2>
+
+            <div class="rule-card mb-8">
+                <h4 class="text-xl font-bold text-ember mb-6">🧭 每一層的房間</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <span class="text-white font-bold text-lg block mb-2">普通 85%</span>
+                        <p class="rule-text">多半是怪物，也可能是需要擲骰的隨機事件，或是前人留下遺物的英雄遺跡。</p>
+                    </div>
+                    <div class="md:border-l md:border-white/5 md:pl-8">
+                        <span class="text-white font-bold text-lg block mb-2">精英 13.5%</span>
+                        <p class="rule-text">更強的怪物，掉落率加倍。</p>
+                    </div>
+                    <div class="md:border-l md:border-white/5 md:pl-8">
+                        <span class="text-white font-bold text-lg block mb-2">魔王 1.5%</span>
+                        <p class="rule-text">三倍生命的強敵，掉落率大幅提升。怪物強度每層提升 2.5%。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="rule-card">
+                    <h4 class="text-lg font-bold text-gold mb-3">🔥 休息點與商店</h4>
+                    <p class="rule-text">每 5 層會遇到篝火（回復已損失 HP 的 25%）或神祕祭壇（全屬性永久 +1），接著是深淵商人。升級獲得的技能點只能在這裡分配。</p>
+                </div>
+                <div class="rule-card">
+                    <h4 class="text-lg font-bold text-purple-300 mb-3">🌀 壓力</h4>
+                    <p class="rule-text">第 20 層起每深入一層、每次被反擊，壓力都會上升（上限 200）。受到的傷害 ×(1 + 壓力 / 100)。</p>
+                </div>
+                <div class="rule-card">
+                    <h4 class="text-lg font-bold text-emerald-300 mb-3">🎒 背包只有 5 格</h4>
+                    <p class="rule-text">只能使用或丟棄第一格，而且只有裝備能丟。<br><span class="italic text-emerald-300/80">「有時候，喝下一瓶毒藥是為了能拿起下一把神兵。」</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下載 -->
+    <section id="download" class="py-24 px-5 bg-abyss-900 border-t border-white/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">踏入深淵</h2>
+                <p class="text-zinc-400" data-latest-label>正在查詢最新版本...</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="download-card">
+                    <div class="text-4xl mb-3">📱</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Android</h3>
+                    <p class="rule-text mb-6">下載 APK 後點擊安裝。若手機提示「禁止安裝未知來源的應用程式」，請在設定中允許。</p>
+                    <a data-download="apk" href="https://github.com/Future-Tens/Embers-of-the-Eternal-Abyss-Releases/releases/latest" class="btn-accent block text-center py-3 rounded-xl font-bold">前往下載頁面</a>
+                </div>
+                <div class="download-card">
+                    <div class="text-4xl mb-3">💻</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Windows</h3>
+                    <p class="rule-text mb-6">下載後直接執行。Windows 可能會顯示安全性警告，按「其他資訊」→「仍要執行」即可。</p>
+                    <a data-download="exe" href="https://github.com/Future-Tens/Embers-of-the-Eternal-Abyss-Releases/releases/latest" class="btn-accent block text-center py-3 rounded-xl font-bold">前往下載頁面</a>
+                </div>
+            </div>
+            <p class="text-center text-sm text-zinc-500 mt-8">
+                需要網路連線（登入、英雄榜與雲端存檔）。
+                <a href="https://github.com/Future-Tens/Embers-of-the-Eternal-Abyss-Releases/releases" class="text-gold hover:underline">查看所有版本</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="py-12 px-6 border-t border-white/5 text-center bg-abyss-950">
+        <div class="max-w-7xl mx-auto text-zinc-600 text-xs tracking-widest leading-loose">
+            <div class="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+                <a href="updates.html" class="hover:text-white transition">更新日誌</a>
+                <a href="https://github.com/Future-Tens/Embers-of-the-Eternal-Abyss-Releases/releases" class="hover:text-white transition">GitHub Releases</a>
+                <a href="https://future-tens.github.io/WithYuTogether/" class="hover:text-white transition">Discord TRPG 版</a>
+            </div>
+            &copy; 2026 永恆深淵的餘燼 系統開發組<br>
+            <span class="italic text-zinc-500">願你的餘燼，能在這無盡的深淵中燃燒得久一點。</span>
+        </div>
+    </footer>
+
+    <script src="assets/site.js"></script>
+</body>
+</html>

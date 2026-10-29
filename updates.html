@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更新日誌 | 永恆深淵的餘燼</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/tailwind-config.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="antialiased">
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 bg-abyss-950/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 hover:opacity-80 transition">
+                <img src="assets/icon.png" class="w-9 h-9 rounded-lg" alt="永恆深淵的餘燼 圖示">
+                <span class="text-lg md:text-xl font-serif font-bold tracking-wider text-white">永恆深淵的餘燼</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="index.html#features" class="hover:text-ember transition">遊戲特色</a>
+                <a href="index.html#jobs" class="hover:text-ember transition">職業</a>
+                <a href="index.html#rules" class="hover:text-ember transition">深淵法則</a>
+                <span class="text-ember font-bold border-b-2 border-ember pb-1">更新日誌</span>
+                <a href="index.html#download" class="btn-accent px-5 py-2 rounded-full text-sm font-bold">下載遊戲</a>
+            </div>
+            <a href="index.html#download" class="md:hidden btn-accent px-4 py-1.5 rounded-full text-sm font-bold">下載</a>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-14 px-5 bg-abyss-900 border-b border-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">更新日誌</h1>
+            <p class="text-zinc-400 italic">追蹤餘燼的每一次燃燒與淬煉</p>
+        </div>
+    </section>
+
+    <section class="py-14 px-5 bg-abyss-950 min-h-[50vh]">
+        <div id="releases" class="max-w-3xl mx-auto space-y-8">
+            <p class="text-center text-zinc-500">正在讀取更新紀錄...</p>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/5 text-center bg-abyss-950">
+        <div class="text-zinc-600 text-xs tracking-widest leading-loose">
+            <a href="index.html" class="text-sm text-zinc-500 hover:text-white transition">回到首頁</a><br>
+            &copy; 2026 永恆深淵的餘燼 系統開發組
+        </div>
+    </footer>
+
+    <script>
+        // 更新日誌直接讀取 GitHub Releases：發布 Release 時寫的說明就是這裡的內容
+        const REPO = 'Future-Tens/Embers-of-the-Eternal-Abyss-Releases';
+        const container = document.getElementById('releases');
+
+        function message(text) {
+            container.innerHTML = '';
+            const p = document.createElement('p');
+            p.className = 'text-center text-zinc-500';
+            p.textContent = text;
+            container.appendChild(p);
+        }
+
+        function formatDate(iso) {
+            const d = new Date(iso);
+            return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
+        }
+
+        function releaseCard(release, isLatest) {
+            const card = document.createElement('article');
+            card.className = 'rule-card';
+
+            const header = document.createElement('div');
+            header.className = 'flex flex-wrap items-center gap-3 mb-5 pb-4 border-b border-white/10';
+            const tag = document.createElement('span');
+            tag.className = 'font-cinzel text-2xl font-bold text-gold';
+            tag.textContent = release.tag_name;
+            header.appendChild(tag);
+            if (isLatest) {
+                const badge = document.createElement('span');
+                badge.className = 'text-xs font-bold px-2 py-0.5 rounded bg-ember/15 text-ember border border-ember/30';
+                badge.textContent = '最新版本';
+                header.appendChild(badge);
+            }
+            if (release.prerelease) {
+                const badge = document.createElement('span');
+                badge.className = 'text-xs font-bold px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-400/30';
+                badge.textContent = '測試版';
+                header.appendChild(badge);
+            }
+            const date = document.createElement('span');
+            date.className = 'ml-auto text-sm text-zinc-500';
+            date.textContent = formatDate(release.published_at);
+            header.appendChild(date);
+            card.appendChild(header);
+
+            const body = document.createElement('div');
+            body.className = 'release-body';
+            body.innerHTML = DOMPurify.sanitize(marked.parse(release.body || '（沒有更新說明）'));
+            card.appendChild(body);
+
+            const link = document.createElement('a');
+            link.href = release.html_url;
+            link.className = 'inline-block mt-6 text-sm text-ember hover:underline';
+            link.textContent = '前往下載這個版本 →';
+            card.appendChild(link);
+            return card;
+        }
+
+        async function loadReleases() {
+            try {
+                const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`);
+                if (!res.ok) throw new Error(res.status);
+                const releases = (await res.json()).filter(r => !r.draft);
+                if (releases.length === 0) {
+                    message('目前還沒有發布任何版本，敬請期待。');
+                    return;
+                }
+                container.innerHTML = '';
+                const latest = releases.find(r => !r.prerelease);
+                releases.forEach(r => container.appendChild(releaseCard(r, r === latest)));
+            } catch (e) {
+                message('暫時無法讀取更新紀錄，請稍後再試，或直接前往 GitHub Releases 查看。');
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').classList.toggle('bg-abyss-950/95', window.scrollY > 50);
+        });
+        loadReleases();
+    </script>
+</body>
+</html>
