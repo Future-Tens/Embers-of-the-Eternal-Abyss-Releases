@@ -1,0 +1,60 @@
+# 發布 Release 時，自動把 Firestore 的 config/version.latest_version 更新成這個版本
+#
+# 這個檔案要放在公開的 Release repo (Future-Tens/Embers-of-the-Eternal-Abyss-Releases)
+# 的 .github/workflows/update-version.yml 才會生效；原始碼 repo 這裡只是保存一份
+#
+# 需要的 Secret：FIREBASE_SERVICE_ACCOUNT = 服務帳戶金鑰 (JSON 全文)，帳戶要有「Cloud Datastore 使用者」角色
+# Release 的 tag 要和 project.godot 的 config/version 一致 (例如 v0.4.0 對應 0.4.0，開頭的 v 會被去掉)
+# 預先發行 (pre-release) 不會更新版本號；也可以在 Actions 頁面手動執行並輸入版本號
+
+name: 更新遊戲最新版本號
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本號 (例如 0.4.0)"
+        required: true
+
+env:
+  FIREBASE_PROJECT_ID: eotea-9d06c
+
+jobs:
+  update-version:
+    if: github.event_name == 'workflow_dispatch' || !github.event.release.prerelease
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取得版本號
+        id: version
+        env:
+          RAW_VERSION: ${{ github.event.inputs.version || github.event.release.tag_name }}
+        run: |
+          VERSION="${RAW_VERSION#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::版本號格式不正確：$RAW_VERSION (應為 v主.次.修，例如 v0.4.0)"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: 登入 Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          token_format: access_token
+
+      # 只更新 latest_version (updateMask)，download_url、force_update 等其他欄位保持不變
+      - name: 更新 Firestore config/version
+        env:
+          TOKEN: ${{ steps.auth.outputs.access_token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          curl --fail-with-body -sS -X PATCH \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://firestore.googleapis.com/v1/projects/$FIREBASE_PROJECT_ID/databases/(default)/documents/config/version?updateMask.fieldPaths=latest_version" \
+            -d "{\"fields\": {\"latest_version\": {\"stringValue\": \"$VERSION\"}}}"
+          echo
+          echo "已將 latest_version 更新為 $VERSION"
