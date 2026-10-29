@@ -43,6 +43,137 @@
         <div id="releases" class="max-w-3xl mx-auto space-y-8">
             <p class="text-center text-zinc-500">正在讀取更新紀錄...</p>
         </div>
+
+        <!-- 前作：Discord TRPG 版的更新日誌 (原本放在 future-tens.github.io/WithYuTogether，內容原文保留) -->
+        <div class="max-w-3xl mx-auto mt-24">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="flex-1 h-px bg-white/10"></div>
+                <h2 class="font-serif text-2xl font-bold text-zinc-300">前作・Discord TRPG 版</h2>
+                <div class="flex-1 h-px bg-white/10"></div>
+            </div>
+            <p class="text-center text-sm text-zinc-500 mb-10">
+                手機版移植自 Discord 機器人上的 TRPG 小遊戲。Discord 版的版本號 (v1.x) 與手機版 (v0.x) 是各自獨立的版本線。<br>
+                <a href="https://future-tens.github.io/WithYuTogether/" class="text-gold hover:underline">前往 Discord TRPG 版官網</a>
+            </p>
+
+            <div class="space-y-8 legacy-log">
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.3.0</span>
+                        <span class="legacy-date">2026/03/24</span>
+                    </div>
+                    <p class="legacy-tagline">來自深淵的惡意，現在開始步步為營...</p>
+                    <div class="release-body">
+                        <h3>🧠 壓力系統 (Stress System)</h3>
+                        <p>深淵不再只是肉體的磨難，更會摧毀你的意志。每 1 點壓力將使你額外承受 <strong>1%</strong> 的傷害。</p>
+                        <div class="grid md:grid-cols-2 gap-3 my-3">
+                            <div class="legacy-box"><span class="text-red-300">// 壓力產生源</span><br>受傷: +2 (每次受擊)<br>關卡推進: +4 (每 20 關成長一倍)</div>
+                            <div class="legacy-box"><span class="text-emerald-300">// 壓力上限與緩解</span><br>最高上限: 200 (2倍受傷)<br>減壓手段: 利用特定消耗品</div>
+                        </div>
+                        <h3>⚖️ 生存機制全面改組</h3>
+                        <p class="italic text-zinc-400">「深淵的利爪變得更加鋒利，敏捷不再是萬能的避風港。」</p>
+                        <p><strong>全職業減傷係數下修</strong></p>
+                        <ul>
+                            <li>破壁者: 3.5 → 4 點敏捷/-1傷</li>
+                            <li>幻影行者、波貝: 3 → 4.5 點敏捷/-1傷</li>
+                            <li>血色祭司: 4 (維持不變)</li>
+                            <li>求道者: 3.5 (維持不變)</li>
+                        </ul>
+                        <p><strong>針對預言家的「惡意」</strong></p>
+                        <p class="italic text-zinc-400">「既然你能預知未來，那我也更有機會找到你的弱點。」</p>
+                        <ul>
+                            <li><strong>幻影行者：</strong>最大生命修正 (-15 → -20)，當前基準為 30。</li>
+                            <li><strong>屬性重配：</strong>力量 (10→14), 敏捷 (22→18), 幸運 (10→15)。</li>
+                        </ul>
+                        <h3>🧩 數據驅動優化</h3>
+                        <p><strong>全新的經驗值成長曲線</strong></p>
+                        <div class="legacy-box text-blue-300">EXP_Req = LVL * 50<sup>(LVL * 0.01)</sup></div>
+                        <ul>
+                            <li><strong>狀態欄進化：</strong>屬性欄位現在標註為 <code>主要屬性 (+ 裝備屬性加總)</code>。</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.2.1</span>
+                        <span class="legacy-date">2026/03/21</span>
+                    </div>
+                    <p class="legacy-tagline">真實之眼與休憩的回響</p>
+                    <div class="release-body">
+                        <h3>👣 角色覺醒：全場唯一真預言家</h3>
+                        <p class="italic text-zinc-400">「他的預知未來，才是真正的預知未來。」</p>
+                        <p>幻影行者的預知能力現在能透視路徑盡頭的<strong>怪物種類</strong>以及可能的<strong>掉落物</strong>，真正的先知無所畏懼。</p>
+                        <h3>⚔️ 系統與裝備升級</h3>
+                        <ul>
+                            <li>新增大量物品與裝備，應對深淵更有利。</li>
+                            <li>清晰決策：獲得裝備時直接標註<strong>詳細屬性資訊</strong>，不再盲目抉擇。</li>
+                        </ul>
+                        <h3>⚖️ 系統調整</h3>
+                        <p>「現在只有在休憩處才有辦法分配點數，你無法再隨心所欲地在戰鬥前強化靈魂。」</p>
+                        <p class="text-red-300/80 text-sm italic">※ /分配屬性 指令已停用，將於 v1.3.0 正式移除。</p>
+                    </div>
+                </article>
+
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.2.0</span>
+                        <span class="legacy-date">2026/03/20</span>
+                    </div>
+                    <p class="legacy-tagline">命運的波貝與深淵貿易</p>
+                    <div class="release-body">
+                        <h3>🎭 職業與平衡</h3>
+                        <ul>
+                            <li><strong>新增職業「波貝」：</strong>高幸運、高回復（1.2倍）。副作用：看不懂中文，抉擇困難。</li>
+                            <li><strong>破壁者削弱：</strong>爆擊機率 (25%->15%)、額外爆傷 (50%->35%)。</li>
+                            <li><strong>修正求道者：</strong>修復升等能力異常低落的問題。</li>
+                            <li><strong>血色祭司調整：</strong>移除貧血體質，強化生存能力。</li>
+                        </ul>
+                        <div class="legacy-box"><span class="text-blue-300">📊 數值演算更新</span><br>Crit_Chance = (job_crit + (LUK / 250))<br>Crit_Mult = 1 + job_crit_mult + (LUK / 500)<br>最終傷害 = 基本傷害(浮動) + 額外傷害(不觸發爆擊)</div>
+                        <ul>
+                            <li><strong>商人系統：</strong>擊敗怪物獲取金幣，在休息點購買商店神裝。</li>
+                            <li><strong>修正項目：</strong>解決重設點數異常、修復隨機資料回溯問題。</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.1.1</span>
+                        <span class="legacy-date">2026/03/18</span>
+                    </div>
+                    <div class="release-body">
+                        <ul>
+                            <li><strong>官網上線：</strong>取代舊有指令，提供詳盡數據展示。</li>
+                            <li><strong>怪物烘焙：</strong>強度縮放從 2% 提升至 2.5%。</li>
+                            <li><strong>祭司強化：</strong>增傷邏輯現在正確計算 INT 係數。</li>
+                            <li><strong>Bug 修復：</strong>解決獲得新物品後開啟背包導致道具連線失效的問題。</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.1.0</span>
+                        <span class="legacy-date">2026/03/17</span>
+                    </div>
+                    <div class="release-body">
+                        <p>實裝四職業、雙路線抉擇與放棄冒險功能。</p>
+                        <div class="legacy-box">EXP = 50 * (LVL^LVL) // 重構經驗值公式</div>
+                    </div>
+                </article>
+
+                <article class="rule-card">
+                    <div class="legacy-header">
+                        <span class="legacy-version">v1.0.0</span>
+                    </div>
+                    <p class="legacy-tagline">深淵啟動</p>
+                    <div class="release-body">
+                        <p>開放指令：<code>/開始冒險</code> <code>/探索</code> <code>/狀態</code> <code>/分配屬性</code> <code>/背包</code> <code>/排行榜</code></p>
+                    </div>
+                </article>
+            </div>
+        </div>
     </section>
 
     <footer class="py-12 px-6 border-t border-white/5 text-center bg-abyss-950">
