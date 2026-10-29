@@ -68,7 +68,17 @@ body {
 
 .job-card { display: flex; flex-direction: column; height: 100%; }
 .job-card-special { border-color: rgba(232, 196, 106, 0.35); background: rgba(48, 38, 20, 0.35); }
-.job-emoji { font-size: 2.5rem; text-align: center; margin-bottom: 0.75rem; }
+/* 職業立繪 (去背 PNG 轉 webp)，底部加一點光暈，像站在光柱前 */
+.job-portrait {
+    display: block;
+    height: 220px;
+    width: 100%;
+    object-fit: contain;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 10px 18px rgba(111, 227, 165, 0.18));
+    transition: transform 0.25s;
+}
+.job-card:hover .job-portrait { transform: scale(1.04); }
 .job-card h3 { color: #e8c46a; font-weight: 700; font-size: 1.3rem; text-align: center; margin-bottom: 0.4rem; }
 .job-desc { color: #a1a1aa; font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
 .job-section { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 0.9rem; margin-top: 0.9rem; }
